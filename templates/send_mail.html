@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/static/js/urls.js"></script>
+</head>
+<body>
+<input type="radio" name="answer" id="continue" onclick="subscription()">持續訂閱
+<input type="radio" name="answer" id="break" onclick="cancel()">取消訂閱
+</body>
+<script>
+<!--var continue = document.getElementById('continue');-->
+<!--var break = document.getElementById('break');-->
+var token = window.localStorage.getItem('token');
+var username = window.localStorage.getItem('user');
+var post_data = {'username':username};
+
+function cancel(){
+    $("#break").attr("checked","checked");
+    $.ajax({
+    type:'put',
+    contentType:"application/json",
+    dataType:"json",
+    url:`http://${HOST}:${PORT}/v1/users/${username}/cancel_sub`,
+    data:JSON.stringify(post_data),
+	beforeSend: function(request) {
+            request.setRequestHeader("Authorization", token);
+    },
+      success:function (result) {
+      if (result.code==200){
+      alert("已取消訂閱！")
+      window.location.href = '/index'
+      }else{
+      console.log(result.error)
+      alert("請重新登入")
+      window.location.href = '/login'
+      }
+      }
+    })
+
+}
+
+function subscription(){
+    $("#continue").attr("checked","checked");
+    $.ajax({
+    type:'put',
+    contentType:"application/json",
+    dataType:"json",
+    url:`http://${HOST}:${PORT}/v1/users/${username}/sub`,
+    data:JSON.stringify(post_data),
+	beforeSend: function(request) {
+            request.setRequestHeader("Authorization", token);
+    },
+      success:function (result) {
+      if (result.code==200){
+      alert("成功續訂！")
+      window.location.href = '/index'
+      }else{
+      console.log(result.error)
+      alert("請重新登入")
+      window.location.href = '/login'
+      }
+      }
+    })
+
+}
+
+</script>
+</html>

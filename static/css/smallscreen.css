@@ -1,0 +1,54 @@
+@media screen and (min-width: 501px) {
+  section {
+    background-image:url('../images/pexels-alison-burrell-195226_2.jpg');
+    background-position:0 -300px; 
+    background-size: cover;
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+  section {
+  background-image:url('../images/pexels-cottonbro-4911779.jpg');
+  background-size: cover;
+  }
+}
+
+@media screen and (min-width: 501px) {
+  #main {
+  width: 1000px;height:500px;
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+  #main {
+  width: 450px;height:450px;
+  }
+}
+
+
+
+@media screen and (mix-width: 501px) {
+  #mainimg {
+  display:block;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #mainimg {
+  display:none;
+  }
+}
+
+@media screen and (mix-width: 501px) {
+  .maleimg {
+  display:block;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .maleimg {
+  display:none;
+  }
+}
